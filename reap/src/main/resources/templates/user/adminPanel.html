@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="icon" href="../static//favicon.ico" type="image/x-icon">
+    <title>AdminPanel</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://apis.google.com/js/api.js"></script>
+    <script>
+        $(document).ready(function(){
+            var form=$("#submitForm");
+            $("#submitUser").click(function(){
+                alert("Confirm.. ??");
+                $.ajax({
+                    type:"POST",
+                    url:"/adminPanel",
+                    data:form.serialize(),
+                    success: function(response){
+                        console.log(response);
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+<h2>Users</h2>
+<style>
+    th,td {
+        border: 1px solid black;
+        padding: 15px;
+        text-align: left;
+    }
+</style>
+
+<div>
+    <th :if="${message}" class="alert alert-success" role="alert">
+        <p th:text="${message}">success message</p>
+    </th>
+    <a class="nav-link" th:href="@{/logout}"><img src="../svg/si-glyph-light-bulb.svg"
+                                                  class="glyphyicon">Logout</a></li>
+</div>
+    <table align="center">
+            <div>
+                <span><b>ID</b></span> &nbsp &nbsp &nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                <span><b>Email</b></span> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp  &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp  &nbsp &nbsp
+                <span><b>FirstName</b></span>&nbsp&nbsp&nbsp
+                <span><b>LastName</b></span>&nbsp&nbsp&nbsp&nbsp&nbsp
+                <span><b>Active</b></span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                <span><b>Role</b></span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                <span><b>Gold</b></span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                <span><b>Silver</b></span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                <span><b>Bronze</b></span>&nbsp
+                <span><b>Update</b></span>
+            </div>
+        <div th:each = "userDTO: ${UserDTO}" style="margin: 3px;">
+          <form name="form" id="submitForm" method="post">
+            <div>
+                <span>
+                    <input th:name="id" type="text" th:value="${userDTO.getId()}" th:size="1"/>
+                </span>
+
+                <span>
+                    <input th:name="email" type="text"  th:value="${userDTO.getEmail()}"/>
+                </span>
+                <span>
+                    <input th:name="firstname" type="text"  th:value="${userDTO.getFirstname()}" th:size="5"/>
+                </span>
+                <span>
+                    <input th:name="lastname" type="text"  th:value="${userDTO.getLastname()}" th:size="5"/>
+                </span>
+                <span>
+                    <input th:name="active" type="text"  th:value="${userDTO.getActive()}" th:size="2"/>
+                </span>
+                <span>
+                    <input th:name="role" type="text"  th:value="${userDTO.getRole()}" th:size="3"/>
+                </span>
+                <span>
+                    <input th:name="goldCount" type="text"  th:value="${userDTO.getGoldBadgeCount()}" th:size="1"/>
+                </span>
+                <span>
+                    <input th:name="silverCount" type="text"  th:value="${userDTO.getSilverBadgeCount()}" th:size="1"/>
+                </span>
+                <span>
+                    <input th:name="bronzeCount" type="text"  th:value="${userDTO.getBronzeBadgeCount()}" th:size="1"/>
+                </span>
+                <span>
+                    <input type="submit" name="updateUser" id="submitUser" value="Update">
+                    <a th:href="@{'/adminPanel/{id}' (id=${userDTO.getId()})}"
+                       class="edit"><span><i class="glyphicon glyphicon-trash"></i></span>Delete</a>
+                </span>
+            </div>
+          </form>
+        </div>
+    </table>
+</body>
+</html>

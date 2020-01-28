@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context = "http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd">
+    <!--
+       <bean id="hotDrink" class="com.spring.demo.Tea"/>
+       <bean id="hotDrink2" class="com.spring.demo.ExpressTea"/>
+       <bean id="restaurant" class="com.spring.demo.Restaurant" autowire="byName">
+       </bean>-->
+
+   <!-- <bean id="hotDrink" class="com.spring.demo.ExpressTea"/>
+    <bean id="hotDrink2" class="com.spring.demo.ExpressTea"/>
+    <bean id="restaurant" class="com.spring.demo.Restaurant" autowire="byType">
+    </bean>-->
+
+   <!-- <bean id="hotDrink2" class="com.spring.demo.ExpressTea"/>
+    <bean id="hotDrink123" class="com.spring.demo.Tea"/>
+    <bean id="restaurant" class="com.spring.demo.Restaurant" autowire="constructor">
+    </bean>-->
+
+    <context:annotation-config/>
+
+    <bean id="hotDrink2" class="com.spring.demo.ExpressTea"/>
+    <!--<bean id="hotDrink123" class="com.spring.demo.Tea"/>-->
+    <bean id="restaurant" class="com.spring.demo.Restaurant">
+    </bean>
+
+
+</beans>

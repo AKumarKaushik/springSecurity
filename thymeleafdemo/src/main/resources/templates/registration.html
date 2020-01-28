@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <link th:href="@{'/stylesheets/loader.css'}" rel="stylesheet"/>
+    <script src="jquery-3.3.1.min.js"></script>
+    <script src="@{'/javascripts/loader.js'}"></script>
+</head>
+<body>
+<h1>Registration Page</h1>
+<form th:action="@{/registration}" th:object="${registrationForm}" method="post">
+    <div id="loading2" style="display:none;"><img src="images/loader.gif" alt="" />Loading!</div>
+    <label>UserName:</label>
+    <input type="text" name = "username" placeholder="Enter UserName"><br/><br/>
+    <label>Email:</label>
+    <input type="text" placeholder="Enter Email"/><br/><br/>
+    <label>Password</label>
+    <input type="password" name="password" placeholder="Enter Password"/><br/><br/>
+    <br/><input type="submit" value="Login"/>
+</form>
+</body>
+</html>

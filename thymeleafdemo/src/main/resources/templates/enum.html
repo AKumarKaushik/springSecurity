@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<label>Role : </label>
+<select>
+    <option th:each="Role : ${T(com.thymeleaf.thymeleafdemo.enums.Role).values()}"
+            th:value="${Role.getValue()}"
+            th:text="${Role.getValue()}">
+
+    </option>
+</select>
+</body>
+</html>

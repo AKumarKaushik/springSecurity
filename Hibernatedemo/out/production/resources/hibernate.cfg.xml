@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <!--Database connection settings -->
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/spring_demo</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.connection.password">igdefault</property>
+
+        <!--JDBC connection pool-->
+        <property name="connection.pool_size">10</property>
+
+        <!-- SQL Dialect-->
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
+
+        <!--echo all executed SQL-->
+        <property name="show_sql">true</property>
+
+        <!--drop or re-create database schema at startup-->
+        <property name="hbm2ddl.auto">create</property>
+
+        <!--Annotated entity class-->
+        <mapping class="com.hibernate.Author"/>
+
+        <mapping class="com.hibernate.Book"/>
+
+        <mapping class= "com.hibernate.Q15OneToOne.Author"/>
+
+        <mapping class="com.hibernate.Q15OneToOne.Book"/>
+
+        <mapping class="com.hibernate.Q16OneToManyUnidirectional.Author"/>
+
+        <mapping class="com.hibernate.Q16OneToManyUnidirectional.Book"/>
+
+        <mapping class="com.hibernate.Q16OneToManyBidirectional.Author"/>
+
+        <mapping class="com.hibernate.Q16OneToManyBidirectional.Book"/>
+
+        <mapping class="com.hibernate.Q16OneToManyWithoutAdditionalTable.Author"/>
+
+        <mapping class="com.hibernate.Q16OneToManyWithoutAdditionalTable.Book"/>
+
+        <mapping class="com.hibernate.Q16Cascade.Author"/>
+
+        <mapping class="com.hibernate.Q16Cascade.Book"/>
+
+        <mapping class="com.hibernate.Q17ManyToMany.Author"/>
+
+        <mapping class="com.hibernate.Q17ManyToMany.Book"/>
+
+    </session-factory>
+</hibernate-configuration>

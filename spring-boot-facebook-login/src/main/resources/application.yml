@@ -1,0 +1,49 @@
+server:
+  port: 8085
+
+facebook:
+  client:
+    clientId: 2557008441283220
+    clientSecret: fca6b4c0ab6e348e2c24a28fe3e74aa7
+    accessTokenUri: https://graph.facebook.com/oauth/access_token
+    userAuthorizationUri: https://www.facebook.com/dialog/oauth
+    tokenName: oauth_token
+    authenticationScheme: query
+    clientAuthenticationScheme: form
+  resource:
+    userInfoUri: https://graph.facebook.com/me
+
+
+github:
+  client:
+    clientId: bd1c0a783ccdd1c9b9e4
+    clientSecret: 1a9030fbca47a5b2c28e92f19050bb77824b5ad1
+    accessTokenUri: https://github.com/login/oauth/access_token
+    userAuthorizationUri: https://github.com/login/oauth/authorize
+    clientAuthenticationScheme: form
+    scope: user%20public_repo
+  resource:
+    userInfoUri: https://api.github.com/user
+
+google:
+  client:
+     clientId: 879300912538-6bl219v7vebei824msfaj0n7uap61pet.apps.googleusercontent.com
+     clientSecret: urPHRtqYY9u6QQSAJxdXeyT7
+     access-token-uri: https://www.googleapis.com/oauth2/v3/token
+     user-authorization-uri: https://accounts.google.com/o/oauth2/v2/auth
+     token-name: oauth_token
+     client-authentication-scheme: query
+     scope: email profile
+  resource:
+     prefer-token-info: false
+     user-info-uri: https://www.googleapis.com/userinfo/v2/me
+
+
+
+security:
+  oauth2:
+    client:
+     client-id: client
+     client-secret: client
+     scope: read,write
+     auto-approve-scopes: ".*"

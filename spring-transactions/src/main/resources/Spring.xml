@@ -1,0 +1,88 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+
+    <!--DriverManagerDataSource-->
+    <bean id="driverManagerDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="url" value="jdbc:mysql://localhost:3306/spring_demo"/>
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="username" value="root"/>
+        <property name="password" value="igdefault"/>
+    </bean>
+
+
+    <bean id="basicDataSource" class="org.apache.commons.dbcp2.BasicDataSource">
+        <property name="url" value="jdbc:mysql://localhost:3306/spring_demo"/>
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="username" value="root"/>
+        <property name="password" value="igdefault"/>
+        <property name="initialSize" value="2"/>
+        <property name="maxTotal" value="5"/>
+    </bean>
+
+
+    <bean id="singleDataSource" class="org.springframework.jdbc.datasource.SingleConnectionDataSource">
+        <property name="url" value="jdbc:mysql://localhost:3306/spring_demo"/>
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="username" value="root"/>
+        <property name="password" value="igdefault"/>
+        <property name="suppressClose" value="true"/>
+    </bean>
+
+    <bean id="mybean" class="com.ttn.Spring_jdbc.Spring_jdbc">
+        <constructor-arg ref="singleDataSource">
+        </constructor-arg>
+    </bean>
+
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="singleDataSource"/>
+    </bean>
+
+    <bean id="customjbdcTemplate" class="com.ttn.databaseConnection.CustomJDBCTemplate">
+        <constructor-arg ref="jdbcTemplate">
+        </constructor-arg>
+    </bean>
+
+    <bean id="user" class="com.ttn.databaseConnection.User">
+        <property name="username" value="akashTTN"></property>
+        <property name="password" value="kaushik"></property>
+        <property name="name" value="Akash"></property>
+        <property name="age" value="23"></property>
+        <property name="dob" value="1993/11/24"></property>
+    </bean>
+
+    <bean id="usermapper" class="com.ttn.databaseConnection.UserMapper"/>
+
+    <bean id="nameParameter"
+          class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
+        <constructor-arg ref="singleDataSource"/>
+    </bean>
+
+    <bean id="namedParameterDemo" class="com.ttn.databaseConnection.NamedParameterDemo">
+        <constructor-arg ref="nameParameter"/>
+    </bean>
+
+    <bean id="customerDAO" class="com.ttn.Q4.CustomerDAOImpl">
+        <constructor-arg ref="driverManagerDataSource"></constructor-arg>
+    </bean>
+
+    <bean id="customerManager" class="com.ttn.Q4.CustomerManagerImpl">
+        <property name="customerDAO" ref="customerDAO"/>
+    </bean>
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource"  ref="driverManagerDataSource" />
+    </bean>
+
+    <bean id="serviceImpl" class="com.ttn.databaseConnection.UserService">
+        <constructor-arg ref="transactionManager"/>
+    </bean>
+    <bean id="userServicePlatformTransaction" class="com.ttn.Q4.UserServicePlatformTransaction">
+        <constructor-arg ref="transactionManager"/>
+    </bean>
+
+    <bean id="customer" class="com.ttn.Q4.Customer"/>
+    <bean id="address" class="com.ttn.Q4.Address"/>
+
+</beans>
